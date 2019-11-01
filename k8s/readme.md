@@ -44,7 +44,7 @@ Service config files in depth
 - Services: sets up networking in a K8s Cluster
     1. ClusterIP: exposes a container to the inside of k8s Node
     2. NodePort: exposes a container to the outside world (only for dev)
-    3. LoadBalancer
+    3. LoadBalancer: legacy way of getting network traffic into a cluster
     4. Ingress: center point (door gateway) to allow access from the outside world into k8s node
 - Secrets: securely stores a piece of information in the cluster, such as a database password
 
@@ -116,3 +116,7 @@ AccessModes:
 - ReadWriteOne: can be used by a single node
 - ReadOnlyMany: multiple nodes can read from this
 - ReadWriteMany: can be read and written to by many nodes
+
+reference docs:
+- [Ingress Nginx repo](https://github.com/kubernetes/ingress-nginx)
+- [Studying Ingress Nginx - Hongli Lai](https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html)
