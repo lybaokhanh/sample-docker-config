@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 3                             # specify the number of deployment, create 1 pod here
+  selector:                               # how Deployment find the pods manage after they created ?
+    matchLabels:
+      component: web                      # Deployment will looking for objects with label of component web
+  template:                             # define pod template, so Deployment can maintain
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: kbly/multi-client
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: web
+  ports:
+    - port: 3000
+      targetPort: 3000

@@ -1,0 +1,13 @@
+# name and kind should be unique, master will comparing with pod inside VM Node to update config file
+apiVersion: v1
+kind: Pod                         # specify type of object to running container
+metadata:
+  name: client-pod
+  labels:
+    component: web                # linking to any selector name: web
+spec:
+  containers:
+    - name: client
+      image: kbly/multi-client
+      ports:
+        - containerPort: 3000

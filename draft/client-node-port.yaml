@@ -1,0 +1,12 @@
+apiVersion: v1            # get set of 'objects' we can use
+kind: Service             # specify type of object to setup networking
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort          # expose set of pods to the outside of the world (but only for dev purposes)
+  ports:
+    - port: 3050         # another pod access, inside multi-client-pod could access
+      targetPort: 3000    # expose its port 3000, sending incoming traffic to multi-client-pod
+      nodePort: 31515     # browser access, random 30000-32767 if not define
+  selector:
+    component: web        # to find any pod with a label component web, component can be tier or sth that you want
