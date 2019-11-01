@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "schedule": ["before 9am", "after 1am"],
+  "timezone": "Asia/Ho_Chi_Minh",
+  "automerge": true,
+  "major": {
+    "automerge": false
+  }
+}
