@@ -1,40 +1,40 @@
-version: '3'
+version: "3"
 services:
   postgres:
-    image: 'postgres:latest'
+    image: "postgres:latest"
   redis:
-    image: 'redis:latest'
+    image: "redis:latest"
   nginx:
     restart: always
     build:
       dockerfile: Dockerfile.dev
-      context: ./nginx
+      context: ./rok-deployer/nginx
     ports:
-      - '3050:80'
+      - "3050:80"
   api:
     depends_on:
       - postgres
     build:
       dockerfile: Dockerfile.dev
-      context: ./server
+      context: ./rok-server
     volumes:
       - /app/node_modules
-      - ./server:/app
+      - ./rok-server:/app
     env_file:
-      - ./server/.env
+      - ./rok-server/.env
   client:
     build:
       dockerfile: Dockerfile.dev
-      context: ./client
+      context: ./rok-client
     volumes:
       - /app/node_modules
-      - ./client:/app
+      - ./rok-client:/app
   worker:
     build:
       dockerfile: Dockerfile.dev
-      context: ./worker
+      context: ./rok-worker
     env_file:
-      - ./worker/.env
+      - ./rok-worker/.env
     volumes:
       - /app/node_modules
-      - ./worker:/app
+      - ./rok-worker:/app
